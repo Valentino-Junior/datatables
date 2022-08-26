@@ -12,6 +12,10 @@
 <!-- This link is important has styling such as up and down arrow, hover striped and stationary on the 1st row, however have not used it in this example thus have used boot strap instead -->
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> -->
 
+
+
+<link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css' %}">
+
 </head> 
 <body>
 <div class="container">
@@ -33,6 +37,7 @@
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.js"></script>
 
 
+<script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
 
 <script>
    $(document).ready(function() {
@@ -46,5 +51,17 @@
        );
    } );
    </script>
+
+
+{% if messages %}
+  {% for message in messages %}
+  <script type=text/javascript>
+    toastr.options.progressBar = true;
+    toastr.{{ message.tags }}('{{ message }}')
+  </script>
+  {% endfor %}
+  {% endif %}
+
+
 </body> 
 </html>
