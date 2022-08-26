@@ -4,7 +4,15 @@
  
 {% block content %}
  <div class="col-md-12">
-        <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4> <span><a href="/addnew" class="btn btn-primary">Add New Record</a></span>  
+        <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4> 
+
+        {% block toolbar %}
+        <span><a href="/responsive" class="btn btn-primary">Responsive template</a></span>  
+        {% endblock toolbar %}
+
+
+
+        <span><a href="/addnew" class="btn btn-primary">Add New Record</a></span>  
         <div class="table-responsive">
   <table id="bootstrapdatatable" class="table table-striped table-bordered table-hover " width="100%">
             <thead>

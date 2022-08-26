@@ -32,3 +32,7 @@ def destroy(request, id):
     employee = Employee.objects.get(id=id)  
     employee.delete()  
     return redirect("/")  
+
+
+def responsive(request):  
+    return render(request,"responsive.html") 
