@@ -16,7 +16,7 @@
         <div class="table-responsive">
   <table id="bootstrapdatatable" class="table table-striped table-bordered table-hover " width="100%">
             <thead>
-                <th><input type="checkbox" id="checkall" /></th>
+                <th><input type="checkbox" id="selecter" /></th>
                 <th>ID</th>
                 <th>Employee Name</th>
                 <th>Employee Email</th>
@@ -27,7 +27,8 @@
    <tbody>
    {% for employee in employees %}  
     <tr>  
-     <td><input type="checkbox" class="checkthis" /></td>
+     <!-- <td><input type="checkbox" class="checkthis" /></td> -->
+     <td><input type="checkbox" id="{{ employee.id }}" name="employees" value="{{ employee.id}}"></td>
      <td>{{ employee.id }}</td>  
      <td>{{ employee.name }}</td>  
      <td>{{ employee.email }}</td>  
