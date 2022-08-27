@@ -13,23 +13,21 @@ def addnew(request):
         if form.is_valid():  
             try:  
                 form.save()  
+                messages.success(request, 'Order created successfuly') 
+
                 return redirect('/')  
             except:  
                 pass 
     else:  
         form = EmployeeForm()  
 
-        
-
-
 
     return render(request,'index.html',{'form':form})  
+
 def index(request):  
     employees = Employee.objects.all()  
-    messages.success(request, 'Order created successfuly') 
-
-
     return render(request,"show.html",{'employees':employees})  
+
 def edit(request, id):  
     employee = Employee.objects.get(id=id)  
     return render(request,'edit.html', {'employee':employee})  
