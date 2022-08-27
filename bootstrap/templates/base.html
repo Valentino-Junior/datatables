@@ -36,9 +36,12 @@
 
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.js"></script>
 
+<!-- #########toast script ######### -->
 
 <script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
 
+
+<!-- ######### datatables script ########### -->
 <script>
    $(document).ready(function() {
        $('#bootstrapdatatable').DataTable({
@@ -53,6 +56,19 @@
    </script>
 
 
+<!-- **********mark checkbox script ******** -->
+<script>
+$("#selecter").change(function () {
+   if (this.checked) {
+     $('input[name="students"]').prop('checked', true);
+   }
+   else {
+     $('input[name="students"]').prop('checked', false);
+   }
+ });
+ </script>
+
+<!-- ############# Alert message with progressbar ########## -->
 {% if messages %}
   {% for message in messages %}
   <script type=text/javascript>
