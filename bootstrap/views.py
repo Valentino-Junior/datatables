@@ -20,8 +20,7 @@ def addnew(request):
                 pass 
     else:  
         form = EmployeeForm()  
-
-
+        
     return render(request,'index.html',{'form':form})  
 
 def index(request):  
