@@ -48,6 +48,16 @@ def destroy(request, id):
 
     return redirect("/")  
 
+def deleted(request):  
+    if request.method == 'POST':
+        employees = request.POST.getlist('employees')
+        for employ in employees:
+            # print(employ)
+            employ = Employee.objects.get(pk=employ)
+            employ.delete()  
+    messages.success(request, 'Order deleted successfuly') 
+
+    return redirect("/")  
 
 def responsive(request):  
     return render(request,"responsive.html") 

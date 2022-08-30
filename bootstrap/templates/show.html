@@ -13,11 +13,16 @@
 
 
         <span><a href="/addnew" class="btn btn-primary">Add New Record</a></span>  
+        <form method="POST" action = "/deleted"> 
+         {% csrf_token %}
+
+        <br><br><input type="submit" value="Delete All Selected" class="btn btn-primary"> 
+
         <div class="table-responsive">
   <table id="bootstrapdatatable" class="table table-striped table-bordered table-hover " width="100%">
             <thead>
-                <th><input type="checkbox" id="selecter" /></th>
                 <th>ID</th>
+                <th><input type="checkbox" id="selecter" /></th>
                 <th>Employee Name</th>
                 <th>Employee Email</th>
                 <th>Employee Contact</th>
@@ -25,11 +30,11 @@
                 <th>Delete</th>
              </thead>
    <tbody>
+    </form>
    {% for employee in employees %}  
     <tr>  
-     <!-- <td><input type="checkbox" class="checkthis" /></td> -->
-     <td><input type="checkbox" id="{{ employee.id }}" name="employees" value="{{ employee.id}}"></td>
      <td>{{ employee.id }}</td>  
+     <td><input type="checkbox" id="{{ employee.id }}" name="employees" value="{{ employee.id}}"></td>
      <td>{{ employee.name }}</td>  
      <td>{{ employee.email }}</td>  
      <td>{{ employee.contact }}</td>  
