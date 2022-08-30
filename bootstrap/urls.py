@@ -9,7 +9,7 @@ urlpatterns = [
     path('delete/<int:id>', views.destroy),
     path('deleted', views.deleted),
 
-    path('ajaxdelete', views.ajaxdelete),  
+    path('ajax/delete', views.ajaxdelete),  
 
 
 

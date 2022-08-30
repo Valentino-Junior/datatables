@@ -60,7 +60,8 @@ def deleted(request):
     return redirect("/")  
 
 def ajaxdelete(request):
-    return redirect (request, "/")
-    
+    # return redirect (request, "/")
+    return render (request, 'ajaxdelete.html')
+
 def responsive(request):  
     return render(request,"responsive.html") 
