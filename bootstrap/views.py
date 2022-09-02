@@ -44,7 +44,7 @@ def update(request, id):
 def destroy(request, id):  
     employee = Employee.objects.get(id=id)  
     employee.delete()  
-    messages.success(request, 'Order deleted successfuly') 
+    messages.success(request, 'Order delete successfuly') 
 
     return redirect("/")  
 
