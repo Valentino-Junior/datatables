@@ -14,7 +14,14 @@
 
         <span><a href="/addnew" class="btn btn-primary">Add New Record</a></span>  
 
-        <span><a href="/ajax/delete" class="btn btn-primary">Ajax delete</a></span>  
+        <span><a href="/ajax/delete" class="btn btn-primary">Ajax delete</a></span> 
+         
+        {% block breadcrumb %}
+        <ul class="breadcrumb" style="width: 260px; display: flex; float: right;">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Level 1</a></li>
+        <li class="active">Level 2</li> </ul> 
+       {% endblock breadcrumb %}
 
         <form method="POST" action = "/deleted"> 
          {% csrf_token %}
