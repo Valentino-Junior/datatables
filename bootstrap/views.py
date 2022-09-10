@@ -66,5 +66,5 @@ def ajaxdelete(request):
 def responsive(request):  
     return render(request,"responsive.html") 
 
-def modal_database(request):  
-    return render(request,"modal_database.html") 
+def modal_datatable(request):  
+    return render(request,"modal datatable.html") 

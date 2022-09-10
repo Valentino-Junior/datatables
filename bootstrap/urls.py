@@ -12,7 +12,7 @@ urlpatterns = [
     path('ajax/delete', views.ajaxdelete),  
 
     path('responsive', views.responsive),  
-    path('modal_database', views.modal_database),  
+    path('modal_datatable', views.modal_datatable),  
 
 
 ]  
