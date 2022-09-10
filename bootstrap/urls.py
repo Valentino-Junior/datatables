@@ -11,8 +11,8 @@ urlpatterns = [
 
     path('ajax/delete', views.ajaxdelete),  
 
-
-
     path('responsive', views.responsive),  
+    path('modal_database', views.modal_database),  
+
 
 ]  
