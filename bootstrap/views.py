@@ -68,3 +68,7 @@ def responsive(request):
 
 def modal_datatable(request):  
     return render(request,"modal datatable.html") 
+
+def tailwind(request):
+    contetxt= {}
+    return render (request, 'tailwind.html')

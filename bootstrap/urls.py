@@ -10,6 +10,8 @@ urlpatterns = [
     path('deleted', views.deleted),
 
     path('ajax/delete', views.ajaxdelete),  
+    path('tailwind', views.tailwind),  
+
 
     path('responsive', views.responsive),  
     path('modal_datatable', views.modal_datatable),  
