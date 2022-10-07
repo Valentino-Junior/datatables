@@ -59,9 +59,9 @@ def deleted(request):
 
     return redirect("/")  
 
-def ajaxdelete(request):
+def flowbite(request):
     # return redirect (request, "/")
-    return render (request, 'ajaxdelete.html')
+    return render (request, 'flowbite.html')
 
 def responsive(request):  
     return render(request,"responsive.html") 

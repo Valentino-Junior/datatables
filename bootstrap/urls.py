@@ -9,7 +9,7 @@ urlpatterns = [
     path('delete/<int:id>', views.destroy),
     path('deleted', views.deleted),
 
-    path('ajax/delete', views.ajaxdelete),  
+    path('flowbite', views.flowbite),  
     path('tailwind', views.tailwind),  
 
 
