@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["datatables-production.up.railway.app","datatables-production.up.railway.app/admin", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ['datatables-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://datatables-production.up.railway.app/']
 
 # Application definition
 
