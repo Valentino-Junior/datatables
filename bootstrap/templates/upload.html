@@ -1,22 +1,37 @@
-<form method="post" enctype="multipart/form-data" action="file_upload/" id="dropzone-form">
-    {% csrf_token %}
-    {{ form }}
-    <div>
-        <label for="id_instructions">Instructions:</label>
-        <textarea name="instructions" id="id_instructions"></textarea>
-    </div>
-    <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    
+    <form method="post" enctype="multipart/form-data"  id="dropzone-form">
+        {% csrf_token %}
+        {{ form }}
+        <div>
+            <label for="id_instructions">Instructions:</label>
+            <textarea name="instructions" id="id_instructions"></textarea>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css" rel="stylesheet">
+    
+    <script>
+        Dropzone.autoDiscover = false;
+        var form = document.getElementById('dropzone-form');
+        var dropzone = new Dropzone(form, {
+            url: form.getAttribute('action'),
+            paramName: 'files',
+            maxFiles: null
+        });
+    </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css" rel="stylesheet">
 
-<script>
-    Dropzone.autoDiscover = false;
-    var form = document.getElementById('dropzone-form');
-    var dropzone = new Dropzone(form, {
-        url: form.getAttribute('action'),
-        paramName: 'files',
-        maxFiles: null
-    });
-</script>
+</body>
+</html>

@@ -83,8 +83,13 @@ def file_upload_view(request):
             files = request.FILES.getlist('files')
             instructions = request.POST['instructions']
             for f in files:
+                 file_instance = FileUploadForm(files=f)
+                 file_instance.save()
                 # do something with the file, such as saving it to the database or storing it on the filesystem
-                pass
+            pass
+            instruct = Photo(instructions = instructions)
+            instruct.save()
+
             # do something with the instructions, such as saving them to the database or processing them
             pass
     else:
