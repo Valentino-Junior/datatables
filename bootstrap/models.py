@@ -13,3 +13,7 @@ class Employee(models.Model):
 class Photo(models.Model):
     files = models.FileField()
     instructions = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.instructions
+
