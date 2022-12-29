@@ -1,4 +1,4 @@
-<form method="post" enctype="multipart/form-data" action="{% url 'file_upload' %}" id="dropzone-form">
+<form method="post" enctype="multipart/form-data" action="file_upload/" id="dropzone-form">
     {% csrf_token %}
     {{ form }}
     <div>
