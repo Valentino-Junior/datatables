@@ -9,3 +9,8 @@ class EmployeeForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={ 'class': 'form-control' }),
             'contact': forms.TextInput(attrs={ 'class': 'form-control' }),
       }
+
+
+class FileUploadForm(forms.Form):
+    files = forms.MultipleFileField()
+    instructions = forms.CharField(widget=forms.Textarea)
