@@ -8,3 +8,8 @@ class Employee(models.Model):
   
     class Meta:  
         db_table = "employee"
+
+
+class Photo(models.Model):
+    files = models.FileField()
+    instructions = models.CharField(max_length=255, blank=True)
