@@ -1,6 +1,6 @@
 #forms.py
 from django import forms  
-from .models import Employee  
+from .models import * 
 class EmployeeForm(forms.ModelForm):  
     class Meta:  
         model = Employee  
@@ -12,5 +12,8 @@ class EmployeeForm(forms.ModelForm):
 
 
 class FileUploadForm(forms.Form):
-    files = forms.MultipleFileField()
-    instructions = forms.CharField(widget=forms.Textarea)
+    class Meta:
+        model = Photo
+        fields =  ('files', 'instructions', )
+
+    
