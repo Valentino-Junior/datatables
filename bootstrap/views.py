@@ -1,6 +1,6 @@
 #views.py
 from django.shortcuts import render, redirect  
-from .forms import EmployeeForm  
+from .forms import * 
 from .models import Employee 
 
 from django.contrib import messages
@@ -72,3 +72,21 @@ def modal_datatable(request):
 def tailwind(request):
     contetxt= {}
     return render (request, 'tailwind.html')
+
+
+
+def file_upload_view(request):
+    if request.method == 'POST':
+        form = FileUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # handle the uploaded files and instructions
+            files = request.FILES.getlist('files')
+            instructions = request.POST['instructions']
+            for f in files:
+                # do something with the file, such as saving it to the database or storing it on the filesystem
+                pass
+            # do something with the instructions, such as saving them to the database or processing them
+            pass
+    else:
+        form = FileUploadForm()
+    return render(request, 'upload.html', {'form': form})
