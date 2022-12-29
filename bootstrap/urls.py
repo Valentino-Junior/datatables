@@ -14,7 +14,11 @@ urlpatterns = [
 
 
     path('responsive', views.responsive),  
-    path('modal_datatable', views.modal_datatable),  
+    path('modal_datatable', views.modal_datatable), 
+
+
+    path('file_upload', views.file_upload_view),  
+
 
 
 ]  
