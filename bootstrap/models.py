@@ -15,5 +15,5 @@ class Photo(models.Model):
     instructions = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        return self.instructions
+        return self.instructions, self.files
 
