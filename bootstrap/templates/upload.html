@@ -26,7 +26,7 @@
     
     <form method="post" enctype="multipart/form-data"  id="dropzone-form">
         {% csrf_token %}
-         <input type="file" multiple name="files" id="name" required/>
+         <input type="file" multiple name="files" id="name" class = "dropzone" required/>
         <!-- {{ form.as_p }} -->
         <div>
             <label for="id_instructions">Instructions:</label>
