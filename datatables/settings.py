@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-8y-r=cl_r=vx94q$f9a*w3p30jekfl%x=eydfpqej@-6jbz$@w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["datatables-production.up.railway.app","https://datatables-production.up.railway.app/admin", "127.0.0.1"]
+# ALLOWED_HOSTS = ["datatables-production.up.railway.app","https://datatables-production.up.railway.app/admin", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ['https://datatables-production.up.railway.app']
+# CSRF_TRUSTED_ORIGINS = ['https://datatables-production.up.railway.app']
 
 # Application definition
 
@@ -81,18 +81,25 @@ WSGI_APPLICATION = 'datatables.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # development
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql'),
+#         'NAME':'railway',
+#         'USER':'postgres',
+#         'PASSWORD':'n3x4aBDe3mukZDhV3QNy',
+#         'HOST': 'containers-us-west-149.railway.app',
+#         'PORT': '7662',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.path.join(BASE_DIR, 'db.postgresql'),
-        'NAME':'railway',
-        'USER':'postgres',
-        'PASSWORD':'n3x4aBDe3mukZDhV3QNy',
-        'HOST': 'containers-us-west-149.railway.app',
-        'PORT': '7662',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
