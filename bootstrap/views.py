@@ -75,26 +75,26 @@ def tailwind(request):
 
 
 
-def file_upload_view(request):
-    if request.method == 'POST':
-        form = FileUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            # handle the uploaded files and instructions
-            files = request.FILES.getlist('files')
-            instructions = request.POST['instructions']
-            for f in files:
-                 file_instance = Photo(files=f)
-                 file_instance.save()
-                # do something with the file, such as saving it to the database or storing it on the filesystem
-            pass
-            instruct = Photo(instructions = instructions)
-            instruct.save()
+# def file_upload_view(request):
+#     if request.method == 'POST':
+#         form = FileUploadForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             # handle the uploaded files and instructions
+#             files = request.FILES.getlist('files')
+#             instructions = request.POST['instructions']
+#             for f in files:
+#                  file_instance = Photo(files=f)
+#                  file_instance.save()
+#                 # do something with the file, such as saving it to the database or storing it on the filesystem
+#             pass
+#             instruct = Photo(instructions = instructions)
+#             instruct.save()
 
-            # do something with the instructions, such as saving them to the database or processing them
-            pass
-    else:
-        form = FileUploadForm()
-    return render(request, 'upload.html', {'form': form})
+#             # do something with the instructions, such as saving them to the database or processing them
+#             pass
+#     else:
+#         form = FileUploadForm()
+#     return render(request, 'upload.html', {'form': form})
 
 
 
