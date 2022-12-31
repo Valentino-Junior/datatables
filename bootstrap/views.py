@@ -95,3 +95,22 @@ def file_upload_view(request):
     else:
         form = FileUploadForm()
     return render(request, 'upload.html', {'form': form})
+
+
+
+def upload_files(request):
+    if request.method == 'POST':
+        form = FileUploadForm(request.POST)
+        if form.is_valid():
+            # Save the instructions to the database
+            instructions = form.cleaned_data['instructions']
+            Photo.objects.create(instructions=instructions)
+
+            # Save the uploaded files to the database
+            for file in request.FILES.getlist('file'):
+                Photo.objects.create(file=file)
+
+            return redirect('success')
+    else:
+        form = FileUploadForm()
+    return render(request, 'upload.html', {'form': form})
