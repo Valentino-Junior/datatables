@@ -20,7 +20,10 @@ urlpatterns = [
     path('modal_datatable', views.modal_datatable), 
 
 
-    path('file_upload/', views.file_upload_view),  
+    # path('file_upload/', views.file_upload_view),  
+
+
+     path('upload/', views.upload_files, name='file_upload'),
 
 
 
