@@ -1,3 +1,5 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+<!-- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"> -->
+    
+
 </head>
 <body>
     
+ 
 
-    <form method="post" action="{% url 'upload_files' %}" enctype="multipart/form-data">
+    <form action="upload/" method="post" enctype="multipart/form-data" class="dropzone" >
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <!-- <div class="dropzone" id="myDropzone">
+            <div class="dz-message">
+                Drop files here or click to upload
+            </div>
+        </div> -->
+
+        <button type="submit">Submit</button>
+    </form>
+    
+
+    <form method="post"  enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="dropzone" id="my-dropzone">
@@ -19,8 +44,9 @@
         </div>
         <button type="submit">Submit</button>
     </form>
-    
-    <script src="{% static 'dropzone/dropzone.js' %}"></script>
+
+
+    <script src="{% static 'dropzone/dist/dropzone.js' %}"></script>
     <script>
         Dropzone.options.myDropzone = {
             paramName: 'file',
@@ -37,6 +63,7 @@
             }
         };
     </script>
+    
     
 </body>
 </html>
