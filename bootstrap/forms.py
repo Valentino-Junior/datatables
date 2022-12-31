@@ -13,7 +13,7 @@ class EmployeeForm(forms.ModelForm):
 
 class FileUploadForm(forms.Form):
     class Meta:
-        model = Photo
+        model = FileModel
         fields =  ('files', 'instructions', )
 
     

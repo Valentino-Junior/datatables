@@ -104,11 +104,11 @@ def upload_files(request):
         if form.is_valid():
             # Save the instructions to the database
             instructions = form.cleaned_data['instructions']
-            Photo.objects.create(instructions=instructions)
+            FileModel.objects.create(instructions=instructions)
 
             # Save the uploaded files to the database
             for file in request.FILES.getlist('file'):
-                Photo.objects.create(file=file)
+                FileModel.objects.create(file=file)
 
             return redirect('success')
     else:

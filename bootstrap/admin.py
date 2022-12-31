@@ -5,4 +5,4 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Employee)
-admin.site.register(Photo)
+admin.site.register(FileModel)

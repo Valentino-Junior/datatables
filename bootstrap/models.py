@@ -10,7 +10,7 @@ class Employee(models.Model):
         db_table = "employee"
 
 
-class Photo(models.Model):
+class FileModel(models.Model):
     files = models.FileField(blank=True, null=True, upload_to='files/')
     instructions = models.TextField(max_length=255, blank=True)
 
