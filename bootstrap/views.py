@@ -103,14 +103,14 @@ def upload_files(request):
         form = FileUploadForm(request.POST)
         if form.is_valid():
             # Save the instructions to the database
-            instructions = form.cleaned_data['instructions']
-            FileModel.objects.create(instructions=instructions)
+            # instructions = form.cleaned_data['instructions']
+            # FileModel.objects.create(instructions=instructions)
 
             # Save the uploaded files to the database
             for file in request.FILES.getlist('file'):
-                FileModel.objects.create(file=file)
+                FileModel.objects.create(files=file)
 
-            return redirect('success')
+            # return redirect('success')
     else:
         form = FileUploadForm()
     return render(request, 'upload.html', {'form': form})

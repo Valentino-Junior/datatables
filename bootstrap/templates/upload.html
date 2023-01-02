@@ -11,11 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/basic.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/dropzone.css' %}">
 
-    <!-- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-
-    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">  -->
+  
 
 
 </head>
@@ -24,21 +20,30 @@
 
 
 
-    <form action="upload/" method="post" enctype="multipart/form-data" class="dropzone">
+    <form method="post" enctype="multipart/form-data" class="dropzone" id="myDropzone">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <div class="dropzone" id="myDropzone">
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+        </div>  
+
+        <div  id="myDropzone">
             <div class="dz-message">
                 Drop files here or click to upload
             </div>
         </div>
 
-        <button type="submit">Submit</button>
     </form>
 
+    <!-- <button type="submit">Submit</button> -->
 
-    <form method="post" enctype="multipart/form-data">
+    <button class="upload-control btn-success btn" type="submit" id='submit-all' onclick="document.getElementById('myDropzone').submit()">
+        <i class="glyphicon glyphicon-upload"></i>
+        <span>Submit</span>
+    </button>
+
+    <!-- <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="dropzone" id="my-dropzone">
@@ -47,27 +52,46 @@
             </div>
         </div>
         <button type="submit">Submit</button>
-    </form>
+    </form> -->
 
 
     <script src="{% static 'dropzone-5.7.0/dist/dropzone.js' %}"></script>
     <script src="{% static 'dropzone.js' %}"></script>
 
-    <script>
+    <script type="text/javascript">
+
+Dropzone.autoDiscover = false
+    $(document).ready(function() {
         Dropzone.options.myDropzone = {
-            paramName: 'file',
-            maxFilesize: 2,
-            accept: function (file, done) {
-                done();
-            },
-            init: function () {
-                this.on("complete", function (file) {
-                    if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                        form.submit();
-                    }
+
+            init : function() {
+                var submitButton = document.querySelector("#submit-all")
+                myDropzone = this;
+
+                submitButton.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    myDropzone.processQueue();
                 });
-            }
+
+                this.on("sendingmultiple", function() {
+                    // Figure out what I want here or if I want at all
+                });
+
+                this.on("successmultiple", function(files, response) {
+                    window.location.reload();
+                });
+
+                this.on("errormultiple", function(files, response) {
+                    // Figure out what I want here or if I want at all
+                });
+
+                }
+                // Do I need this?
+                //myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
         };
+});    
+
     </script>
 
 

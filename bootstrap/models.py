@@ -15,5 +15,5 @@ class FileModel(models.Model):
     instructions = models.TextField(max_length=255, blank=True)
 
     def __str__(self):
-        return self.instructions
+        return self.files
 
