@@ -4,6 +4,8 @@ from .forms import *
 from .models import Employee 
 
 from django.contrib import messages
+from django.http import HttpResponse
+
 
 
 # Create your views here.  
@@ -113,4 +115,6 @@ def upload_files(request):
             # return redirect('success')
     else:
         form = FileUploadForm()
+
+        # return HttpResponse()
     return render(request, 'upload.html', {'form': form})

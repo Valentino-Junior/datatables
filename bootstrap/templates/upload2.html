@@ -10,35 +10,17 @@
     <link href="dropzone.min.css" rel="stylesheet" type="text/css">
 
     <!-- Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="dropzone.min.js" type="text/javascript"></script>
 
- <!-- ********* dropzone js *************** -->
- <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
- <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-
-  <!-- Include the Dropzone CSS file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css" />
-
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css">
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
 
 </head>
 <body>
    
     
-    <form method="post" enctype="multipart/form-data"  id="dropzone-form" class="my-drop">
+    <form method="post" enctype="multipart/form-data"  id="dropzone-form" class="dropzone">
         {% csrf_token %}
-
-        <div class="dropzone fallback" id="my-dropzone">
-
-         <!-- <input type="file" multiple name="files" id="name" /> -->
-        <!-- {{ form.as_p }} -->
-
-    </div>
-
 
         <div>
             <label for="id_instructions">Instructions:</label>
@@ -48,18 +30,10 @@
     </form>
     
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"
-    integrity="sha512-9WciDs0XP20sojTJ9E7mChDXy6pcO0qHpwbEJID1YVavz2H6QBz5eLoDD8lseZOb2yGT8xDNIV7HIe1ZbuiDWg=="
-    crossorigin="anonymous"></script>
-
-
-      <!-- Include the Dropzone JavaScript file -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.js"></script>
 
       <!-- Initialize the Dropzone form -->
       <script>
 
-        Dropzone.autoDiscover = false;
 
         var myDropzone = new Dropzone(".dropzone", {
           acceptedFiles: ".jpeg, .jpg, .png, .gif, .pptx, .ppt, .doc,.docx, .xls, .xlsx,.csv, .tsv, .ppt,.pptx,.pages,.odt,",

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/basic.css' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/dropzone.css' %}">
+
+</head>
+
+<body>
+
+
+
+    <form method="post" enctype="multipart/form-data" class="dropzone" id="myDropzone">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+        </div>  
+
+        <div  id="myDropzone">
+            <div class="dz-message">
+                Drop files here or click to upload
+            </div>
+        </div>
+
+    </form>
+
+    <!-- <button type="submit">Submit</button> -->
+
+    <button class="upload-control btn-success btn" type="submit" id='submit-all' onclick="document.getElementById('myDropzone').submit()">
+        <i class="glyphicon glyphicon-upload"></i>
+        <span>Submit</span>
+    </button>
+
+    <!-- <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="dropzone" id="my-dropzone">
+            <div class="dz-message">
+                Drop files here or click to upload
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form> -->
+
+
+    <script src="{% static 'dropzone-5.7.0/dist/dropzone.js' %}"></script>
+
+    <script type="text/javascript">
+
+Dropzone.autoDiscover = false
+    $(document).ready(function() {
+        Dropzone.options.myDropzone = {
+
+            init : function() {
+                var submitButton = document.querySelector("#submit-all")
+                myDropzone = this;
+
+                submitButton.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    myDropzone.processQueue();
+                });
+
+                this.on("sendingmultiple", function() {
+                    // Figure out what I want here or if I want at all
+                });
+
+                this.on("successmultiple", function(files, response) {
+                    window.location.reload();
+                });
+
+                this.on("errormultiple", function(files, response) {
+                    // Figure out what I want here or if I want at all
+                });
+
+                }
+                // Do I need this?
+                //myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
+        };
+});    
+
+    </script>
+
+
+
+
+</body>
+
+</html>
