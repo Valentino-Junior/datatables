@@ -131,9 +131,12 @@
     <i class="glyphicon glyphicon-upload"></i>
     <span>Submit</span>
   </button>
+
+
+                                      <!-- upload input multiple files-->
+
+
   <h2 style="text-align: center;">Multiple file upload showing list of selected files</h2>
-
-
 
   <div class="custom-file" style="display: flex; justify-content: center; border: dotted grey 3px;">
     <input type="file" class="custom-file-input" id="file" multiple onchange="javascript:updateList()">
@@ -142,6 +145,9 @@
   </div>
   <ul id="fileList" class="file-list" style="flex-wrap: wrap; align-items: center;"></ul>
 
+
+                                        
+                                      <!-- upload input multiple files script -->
   <script>
     updateList = function () {
       var input = document.getElementById('file');
