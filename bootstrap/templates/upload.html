@@ -1,112 +1,149 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
 
 
- 
-<link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/basic.css' %}">
-    
-<link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/dropzone.css' %}">
 
-<style>
-    .custom-file{
-  position:relative;
-  font-family:arial;
-  overflow:hidden;
-  margin-bottom:10px;
-  width: auto;
-  display: inline-block;
-  padding: 10px;
-}
-.custom-file-input{
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  cursor:pointer;
-  opacity:0;
-  z-index:100;
-}
-.custom-file img{
-  display:inline-block;
-  vertical-align:middle;
-  margin-right:5px;
-}
-ul.file-list{
-  font-family:arial;
-  list-style: none;
-  padding:0;
-}
-ul.file-list li{
-  border-bottom:1px solid #ddd;
-  padding:5px;
-  max-width: 500px;
-}
-.remove-list{
-  cursor:pointer;
-  margin-left:10px;
-  text-decoration: line-through;
-}
+  <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/basic.css' %}">
 
-.remove-list:hover{
-  
-  text-decoration: line-through;
-}
-</style>
+  <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/dropzone.css' %}">
+
+  <style>
+    .custom-file {
+      position: relative;
+      font-family: arial;
+      overflow: hidden;
+      margin-bottom: 10px;
+      width: auto;
+      display: inline-block;
+      padding: 10px;
+    }
+
+    .custom-file-input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      opacity: 0;
+      z-index: 100;
+    }
+
+    .custom-file img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    ul.file-list {
+      font-family: arial;
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.file-list li {
+      border-bottom: 1px solid #ddd;
+      padding: 5px;
+      max-width: 500px;
+    }
+
+    .remove-list {
+      cursor: pointer;
+      margin-left: 10px;
+      text-decoration: line-through;
+    }
+
+    .remove-list:hover {
+
+      text-decoration: line-through;
+    }
+
+
+    .custom-file-container {
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    .file-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .file-item {
+      background-color: #e9e9e9;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    .remove-list {
+      cursor: pointer;
+      float: right;
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* .file-list {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+} */
+
+    .file-list {
+      display: grid;
+      justify-content: center;
+      align-content: center;
+    }
+  </style>
 
 </head>
+
 <body>
-    
- 
 
-    <form action="upload/" method="post" enctype="multipart/form-data" class="dropzone" >
-        {% csrf_token %}
-        <!-- {{ form }} -->
 
-        <div class="fallback">
-            <input name="file" type="file" multiple />
-        </div> 
-        
-        <div id="myDropzone">
-            <div class="dz-message">
-                Drop files here or click to upload
-            </div>
-        </div>
 
-    </form>
-    <button class="upload-control btn-success btn" type="submit" id='submit-all' onclick="document.getElementById('myDropzone').submit()">
-        <i class="glyphicon glyphicon-upload"></i>
-        <span>Submit</span>
-    </button>
-<h2 style="text-align: center;">Multiple file upload showing list of selected files</h2>
-    
-    <br><br>
-    <div class="custom-file" style="display: flex; justify-content: center; border: dotted grey 3px;">
-        <input type="file" class="custom-file-input" id="file" multiple onchange="javascript:updateList()">
-        <label class="custom-file-label" for="file">
-          <img width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAABhYWFlZWWSkpL19fW9vb01NTXf398kJCTw8PBRUVGdnZ1dXV3m5uZ0dHR8fHzExMSMjIzU1NSxsbEhISGIc9b1AAADv0lEQVR4nO2d607jMBhEa1pa6AVaLu//qgixq2+XxmlSe+IZa85vazQjhZMCarJaGWOMMcYYc8WxdQE0m7RpXQHLNqW0bV0CyVP65ql1DRyP6YfH1kVg7P4s3LUugmKd/rJuXQXDJgVdCnWb/qVDoT6l/+lOqI/pN70JdXe1sDOhrq8GdibUzcDAroS6HRzYkVB/a7Q7oV5rtDehXms06EKoQxoNOhDqsEYDeaHmNBqICzWv0UBaqGMaDZSFOqbRQFio4xoNZIV6S6OBqFBvazSQFOoUjQaCQp2m0UBPqNM0GsgJdapGAzGhTtdoICXUORoNhIQ6T6OBjFDnajRQEepcjQYiQp2v0UBCqPdoNBAQ6n0aDeiFeq9GA3Kh3q/RgFuo92s0oBZqiUYDYqGWaTSgFWqpRgNSoZZrNKAUag2NBoxCraHRgFCodTQa0Am1lkYDMqHW02hAJdSaGg2IhFpXowGPUOtqNKARam2NBiRCra/RgEKoCI0GBELFaDRoLlSURoPWQkVpNGgsVJxGg6ZCRWo0aChUrEaDZkJFazRoJFS8RoM2QsVrNGgi1NOCA1M6LT9we3iYzPp5sPXzenrEgeDj2xjDt02S3xyq8DC48KF1rYp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8XLsVhsMehQjJu4bzOuB4sySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wybgew8/nq/EcPZaFb6eBx+id3ioksyzE4YUlpznwwpLTHHhhyWkOvLDkNAdeWHKaAy8sOc2BF5ac5sALS05z4IUlpznwwpLTHNRYyP2OhuH3SsxbOOc9G4uTeTdIbuESr6dahtx1d25drBrnzMJj62LVOGYWXloXq8Yls3Dfulg19pmFq8/WzSrxnBu40Kvw8ORftvfSulolXrILM99XVGPsO6HvrctV4X1k4cKvi8Mw/s/zHm4Y2VvFDx+t+xXzMT5wtXpt3bCQ11sD1X066bv1yhMnPjxA90KdcIn+oKqbm5IJ9or3xdON28Qv3tV+Gg+jn2QGedkM/5WHkc/NyIftMfaX45n5L23frM/Hy7zL0xhjjDHGEPIFcc477O4fZUsAAAAASUVORK5CYII=" /> Upload Files</label>
+  <form action="upload/" method="post" enctype="multipart/form-data" class="dropzone">
+    {% csrf_token %}
+    <!-- {{ form }} -->
+
+    <div class="fallback">
+      <input name="file" type="file" multiple />
     </div>
-    <ul id="fileList" class="file-list" style="flex-wrap: wrap; align-items: center;"></ul>
 
-    <!-- <input type="file" multiple
-       name="file" 
-         id="file" 
-   onchange="updateList()" />
-<p>Selected files:</p>
-<div id="fileList"></div> -->
+    <div id="myDropzone">
+      <div class="dz-message">
+        Drop files here or click to upload
+      </div>
+    </div>
+
+  </form>
+  <button class="upload-control btn-success btn" type="submit" id='submit-all'
+    onclick="document.getElementById('myDropzone').submit()">
+    <i class="glyphicon glyphicon-upload"></i>
+    <span>Submit</span>
+  </button>
+  <h2 style="text-align: center;">Multiple file upload showing list of selected files</h2>
 
 
 
-<script>
-    updateList = function() {
+  <div class="custom-file" style="display: flex; justify-content: center; border: dotted grey 3px;">
+    <input type="file" class="custom-file-input" id="file" multiple onchange="javascript:updateList()">
+    <label class="custom-file-label" for="file">
+      <img width="30" /> Upload Files</label>
+  </div>
+  <ul id="fileList" class="file-list" style="flex-wrap: wrap; align-items: center;"></ul>
+
+  <script>
+    updateList = function () {
       var input = document.getElementById('file');
       var output = document.getElementById('fileList');
       var children = "";
@@ -116,55 +153,61 @@ ul.file-list li{
         var sizeInKB = (fileSize / 1024).toFixed(2);
         var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2);
         if (sizeInKB > 1024) {
-          children +=  '<li>'+ input.files.item(i).name + "     " + sizeInMB + "MB" +  '<span class="remove-list" onclick="return this.parentNode.remove()">X</span>' + '</li>'}
-          else {
-            children +=  '<li>'+ input.files.item(i).name + '  ('   +  sizeInKB + ' KB)' +  '<span class="remove-list" onclick="return this.parentNode.remove()" style = "color: blue; text-decoration: underline;font-size: small;">remove</span>' + '</li>' 
-          }
+            children += '<li class="file-item">' + input.files.item(i).name + '  (' + sizeInMB + ' MB)' +
+            '<span class="remove-list" onclick="return this.parentNode.remove()" style = "color: blue; text-decoration: underline;font-size: small;">remove</span>' +
+            '</li>'
+        } else {
+          children += '<li class="file-item">' + input.files.item(i).name + '  (' + sizeInKB + ' KB)' +
+            '<span class="remove-list" onclick="return this.parentNode.remove()" style = "color: blue; text-decoration: underline;font-size: small;">remove</span>' +
+            '</li>'
+        }
       }
       output.innerHTML = children;
-  }
-    </script>
-
-    <script src="{% static 'dropzone-5.7.0/dist/dropzone.js' %}"></script>
-
-    <script type="text/javascript">
-
-        // Dropzone.autoDiscover = false
-            $(document).ready(function() {
-                Dropzone.options.myDropzone = {
-        
-                    init : function() {
-                        var submitButton = document.querySelector("#submit-all")
-                        myDropzone = this;
-        
-                        submitButton.addEventListener("click", function(e) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            myDropzone.processQueue();
-                        });
-        
-                        this.on("sendingmultiple", function() {
-                            // Figure out what I want here or if I want at all
-                        });
-        
-                        this.on("successmultiple", function(files, response) {
-                            window.location.reload();
-                        });
-        
-                        this.on("errormultiple", function(files, response) {
-                            // Figure out what I want here or if I want at all
-                        });
-        
-                        }
-                        // Do I need this?
-                        //myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
-                };
-        });    
-        
-            </script>
+    }
+  </script>
 
 
-    
-    
+
+
+  <script src="{% static 'dropzone-5.7.0/dist/dropzone.js' %}"></script>
+
+  <script type="text/javascript">
+    // Dropzone.autoDiscover = false
+    $(document).ready(function () {
+      Dropzone.options.myDropzone = {
+
+        init: function () {
+          var submitButton = document.querySelector("#submit-all")
+          myDropzone = this;
+
+          submitButton.addEventListener("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            myDropzone.processQueue();
+          });
+
+          this.on("sendingmultiple", function () {
+            // Figure out what I want here or if I want at all
+          });
+
+          this.on("successmultiple", function (files, response) {
+            window.location.reload();
+          });
+
+          this.on("errormultiple", function (files, response) {
+            // Figure out what I want here or if I want at all
+          });
+
+        }
+        // Do I need this?
+        //myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
+      };
+    });
+  </script>
+
+
+
+
 </body>
+
 </html>
